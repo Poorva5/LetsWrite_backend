@@ -1,7 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.utils.text import slugify
-
+from users.models import User
 class Category(models.Model):
     name = models.CharField(max_length=250, db_index=True)
     slug = models.SlugField(unique=True)

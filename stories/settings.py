@@ -25,15 +25,34 @@ SECRET_KEY = "django-insecure-gg4djbv$+kqup1+a8(uqui1bq7j4vr_k^(g+snjsg33z@cte%l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+AUTH_USER_MODEL = 'users.User'
+
+ADMINS = [("""poorva""", "poorva644@gmail.com")]
+
+MANAGERS = ADMINS
+
 ALLOWED_HOSTS = []
 
 SITE_ID = 1
 
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
 
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
-ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_EMAIL_REQUIRED = True
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "poorvak455@gmail.com"
+EMAIL_HOST_PASSWORD = "tirmzvrbkrxwhaij"
+
+
+AUTHENTICATION_BACKENDS = (
+   "django.contrib.auth.backends.ModelBackend",
+   "allauth.account.auth_backends.AuthenticationBackend"
+)
 
 
 # Application definition
@@ -50,6 +69,7 @@ INSTALLED_APPS = [
     "dj_rest_auth",
     "django.contrib.sites",
     "allauth",
+    "rest_auth",
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.google",
@@ -67,6 +87,14 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.TokenAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+}
+
 
 ROOT_URLCONF = "stories.urls"
 
