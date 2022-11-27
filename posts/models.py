@@ -20,7 +20,7 @@ class Post(models.Model):
         PUBLISHED = "Published"
 
     title = models.CharField(max_length=250)
-    category = models.ForeignKey(Category, related_name='blog_category', on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='blog_category', on_delete=models.CASCADE, null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
     image = models.ImageField(upload_to='post/%Y/%m/%d', null=True, blank=True)

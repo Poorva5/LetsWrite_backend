@@ -8,5 +8,6 @@ urlpatterns = [
     path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
      path('rest-auth/password/reset/confirm/<uidb64>/<str:token>', PasswordResetConfirmView.as_view(),
             name='password_reset_confirm'),
-    path('api/post/',  include('posts.urls'))
+    path('api/user/', include('users.urls')),
+    path('api/post/',  include('posts.urls')),
 ]
